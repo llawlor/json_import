@@ -15,5 +15,6 @@ gem 'devise'
 group :development, :test do
   gem 'spring'
   gem 'annotate'
+  gem 'puma'
 end
 
