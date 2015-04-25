@@ -1,26 +1,48 @@
-<h2>Log in</h2>
+<div class="row">
+  <div class="col-sm-6 col-xs-12">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <h4 class="breadcrumb">
+      Please Sign In
+    </h4>
+
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :id => 'emailform', :class => 'form-horizontal' }) do |f| %>
+      <div class="form-group">
+        <label class="col-sm-4 col-xs-3 control-label">Email</label>
+        <div class="col-sm-8 col-xs-9"><%= f.text_field :email, :value => cookies['user_id'], :class => 'form-control' %></div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-4 col-xs-3 control-label"><%= t(:password) %></label>
+        <div class="col-sm-8 col-xs-9">
+          <%= f.password_field :password, :class => 'form-control' %>
+          <%= link_to 'Forgot Password', new_user_password_path, :id => 'forgot_password' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-8 col-xs-offset-3 col-xs-9">
+          <div class="checkbox">
+            <label>
+              <%= f.check_box :remember_me, :checked => true %>
+              <%= t(:remember_me) %>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-8 col-xs-offset-3 col-xs-9"><p class="form-control-static"><%= f.submit 'Sign In', :class => 'btn btn-primary' %></p></div>
+      </div>
+    <% end %>
+
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+<script type="text/javascript">
+  var email = document.getElementById('user_email');
+  if (email.value.length == 0)
+    email.focus();
+  else
+    document.getElementById('user_password').focus();
+</script>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
