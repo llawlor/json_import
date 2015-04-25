@@ -36,6 +36,9 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    annotate (2.6.8)
+      activerecord (>= 3.2, <= 4.3)
+      rake (~> 10.4)
     arel (6.0.0)
     builder (3.2.2)
     coffee-rails (4.1.0)
@@ -119,7 +122,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  coffee-rails (~> 4.1.0)
+  annotate
   jquery-rails
   pg
   rails (= 4.2.1)
