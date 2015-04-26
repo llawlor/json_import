@@ -29,7 +29,7 @@ class RecordsController < ApplicationController
       @records = current_user.records.paginate(:page => params[:page])
     # else perform full text search
     else
-      @records = current_user.records.where("to_tsvector(jsonb_extract_path_text(json, ?)) @@ to_tsquery(?)", key, search).paginate(:page => params[:page])
+      @records = current_user.records.where("to_tsvector(jsonb_extract_path_text(json, ?)) @@ plainto_tsquery(?)", key, search).paginate(:page => params[:page])
     end
   end
 
