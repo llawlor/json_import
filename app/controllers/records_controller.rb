@@ -21,16 +21,15 @@ class RecordsController < ApplicationController
   
   # view all documents or search results
   def index
-    search = params[:search]
+    key = params[:key].strip
+    search = params[:search].strip
     
     # if no search term is present
-    if search.blank?
+    if search.blank? || key.blank?
       @records = current_user.records.paginate(:page => params[:page])
-    # else perform full text search by separating key/value by a space
+    # else perform full text search
     else
-      json_key = search.split(' ')[0]
-      json_value = "#{search.split(' ')[1]}:*"
-      @records = current_user.records.where("to_tsvector(jsonb_extract_path_text(json, ?)) @@ to_tsquery(?)", json_key, json_value).paginate(:page => params[:page])
+      @records = current_user.records.where("to_tsvector(jsonb_extract_path_text(json, ?)) @@ to_tsquery(?)", key, search).paginate(:page => params[:page])
     end
   end
 
