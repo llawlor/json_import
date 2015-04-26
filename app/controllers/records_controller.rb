@@ -1,5 +1,24 @@
 class RecordsController < ApplicationController
 
+  # import view
+  def import; ; end
+
+  # upload documents
+  def upload
+    # read and parse the file
+    file = params[:records].read
+    json_records = JSON.parse(file)
+    
+    # for each json record
+    json_records.each do |json_record|
+      current_user.records.create(json: json_record)
+    end
+  
+    flash[:notice] = 'Upload complete'
+    redirect_to :back
+  end
+  
+  # view all documents or search results
   def index
     search = params[:search]
     
