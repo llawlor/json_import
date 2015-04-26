@@ -14,7 +14,11 @@ gem 'devise'
 
 group :development, :test do
   gem 'spring'
-  gem 'annotate'
+end
+
+group :development do
   gem 'puma'
+  gem 'annotate'
+  gem 'quiet_assets'
 end
 
