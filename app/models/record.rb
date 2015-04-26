@@ -18,6 +18,11 @@ class Record < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 15
   
+  # output the json in a format that can be rendered via HTML <pre>
+  def json_formatted
+    JSON.pretty_generate(self.json).gsub("\\\\n", "\n").gsub("\\n", "\n").gsub("\n\n", "\n")
+  end
+  
   # get the json keys, and add it to the user account
   def update_user_json_keys!
     return if self.json.blank?
