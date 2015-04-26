@@ -4,7 +4,7 @@
 
   <div class="form-group">
     <label for="record_json">Raw JSON</label>
-    <%= f.text_area :json, class: 'form-control', placeholder: 'Add JSON document here', rows: 10 %>
+    <%= f.text_area :json, value: @record.json.to_json, class: 'form-control', placeholder: 'Add JSON document here', rows: 10 %>
   </div>
   
   <%= f.submit 'Submit', class: 'btn btn-primary' %>

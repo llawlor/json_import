@@ -12,7 +12,7 @@
 class Record < ActiveRecord::Base
   belongs_to :user
   
-  validates_presence_of :json
+  validate :json_format
   
   # pagination variables
   cattr_reader :per_page
@@ -30,5 +30,12 @@ class Record < ActiveRecord::Base
     # save the user keys
     self.user.save
   end
+    
+  protected
+
+    def json_format
+      errors[:base] << "Document is not in JSON format" if json.blank? || self.json.class != Hash
+    end
   
+
 end
