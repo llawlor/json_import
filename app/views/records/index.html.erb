@@ -18,6 +18,9 @@
   <br><br>
   
   <% if @records.present? %>
+    <b><%= @records.total_entries %> records found.</b>
+    <br><br>
+  
     <table class='table'>
       <% @records.each do |record| %>
         <tr>
