@@ -16,4 +16,16 @@ class Record < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 15
   
+  # get the json keys, and add it to the user account
+  def update_user_json_keys!
+    # for each of this records keys
+    self.json.keys.each do |key|
+      # add the key if it doesn't exist
+      self.user.json_keys.push(key) if !self.user.json_keys.include?(key)
+    end
+
+    # save the user keys
+    self.user.save
+  end
+  
 end

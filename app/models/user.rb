@@ -15,10 +15,12 @@
 #  last_sign_in_ip        :inet
 #  created_at             :datetime
 #  updated_at             :datetime
-#  json_keys              :text
+#  json_keys              :text             default([]), is an Array
 #
 
 class User < ActiveRecord::Base
+  serialize :jsonkeys, :array
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable

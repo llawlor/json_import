@@ -33,14 +33,18 @@ class RecordsController < ApplicationController
     end
   end
 
+  # new record page
   def new
     @record = Record.new
   end
 
+  # create a new record
   def create
     record = current_user.records.new(record_params)
     
+    # if the record was saved successfully
     if record.save
+      record.update_user_json_keys!
       redirect_to records_path
     end
   end
