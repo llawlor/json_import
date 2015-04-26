@@ -11,4 +11,9 @@
 
 class Record < ActiveRecord::Base
   belongs_to :user
+  
+  # pagination variables
+  cattr_reader :per_page
+  @@per_page = 15
+  
 end

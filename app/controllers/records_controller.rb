@@ -24,7 +24,7 @@ class RecordsController < ApplicationController
     
     # if no search term is present
     if search.blank?
-      @records = current_user.records
+      @records = current_user.records.paginate(:page => params[:page])
     # else perform full text search by separating key/value by a space
     else
       json_key = search.split(' ')[0]

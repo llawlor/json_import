@@ -8,6 +8,8 @@ gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'devise'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
