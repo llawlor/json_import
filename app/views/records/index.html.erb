@@ -13,7 +13,7 @@
       <div class="col-sm-10 col-xs-12">
         <label class="col-sm-2 col-xs-2 control-label">Key:</label>
         <div class="col-sm-10 col-xs-10">
-          <%= select_tag :key, options_for_select(current_user.json_keys), class: 'form-control' %>
+          <%= select_tag :key, options_for_select(current_user.json_keys, session[:search_key]), class: 'form-control' %>
         </div>
       </div>
     </div>

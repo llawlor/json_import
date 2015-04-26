@@ -30,6 +30,8 @@ class RecordsController < ApplicationController
     # else perform full text search
     else
       @records = current_user.records.where("to_tsvector(jsonb_extract_path_text(json, ?)) @@ plainto_tsquery(?)", key, search).paginate(:page => params[:page])
+      # save key to cookie
+      session[:search_key] = key
     end
   end
 
