@@ -1,5 +1,7 @@
 <%= form_for @record do |f| %>
 
+  <%= error_messages_for @record %>
+
   <div class="form-group">
     <label for="record_json">Raw JSON</label>
     <%= f.text_area :json, class: 'form-control', placeholder: 'Add JSON document here', rows: 10 %>

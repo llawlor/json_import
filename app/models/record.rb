@@ -12,12 +12,15 @@
 class Record < ActiveRecord::Base
   belongs_to :user
   
+  validates_presence_of :json
+  
   # pagination variables
   cattr_reader :per_page
   @@per_page = 15
   
   # get the json keys, and add it to the user account
   def update_user_json_keys!
+    return if self.json.blank?
     # for each of this records keys
     self.json.keys.each do |key|
       # add the key if it doesn't exist

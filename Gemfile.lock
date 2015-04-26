@@ -56,6 +56,7 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    dynamic_form (1.1.4)
     erubis (2.7.0)
     execjs (2.5.2)
     globalid (0.3.5)
@@ -144,6 +145,7 @@ PLATFORMS
 DEPENDENCIES
   annotate
   devise
+  dynamic_form
   jquery-rails
   pg
   puma

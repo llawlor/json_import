@@ -42,12 +42,15 @@ class RecordsController < ApplicationController
 
   # create a new record
   def create
-    record = current_user.records.new(record_params)
+    @record = current_user.records.new(record_params)
     
     # if the record was saved successfully
-    if record.save
-      record.update_user_json_keys!
+    if @record.save
+      @record.update_user_json_keys!
       redirect_to records_path
+    # else errors
+    else
+      render :new
     end
   end
 
@@ -63,13 +66,15 @@ class RecordsController < ApplicationController
 
   # record is updated
   def update
-    record = current_user.records.find(params[:id])
-    record.assign_attributes(record_params)
+    @record = current_user.records.find(params[:id])
+    @record.assign_attributes(record_params)
     
     # if the record was saved successfully
-    if record.save
-      record.update_user_json_keys!
+    if @record.save
+      @record.update_user_json_keys!
       redirect_to records_path
+    else
+      render :edit
     end  
   end
 
