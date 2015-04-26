@@ -21,8 +21,8 @@ class RecordsController < ApplicationController
   
   # view all documents or search results
   def index
-    key = params[:key].strip
-    search = params[:search].strip
+    key = params[:key].try(:strip)
+    search = params[:search].try(:strip)
     
     # if no search term is present
     if search.blank? || key.blank?
