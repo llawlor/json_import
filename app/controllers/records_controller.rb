@@ -29,7 +29,7 @@ class RecordsController < ApplicationController
     else
       json_key = search.split(' ')[0]
       json_value = "#{search.split(' ')[1]}:*"
-      @records = current_user.records.where("to_tsvector(jsonb_extract_path_text(json, ?)) @@ to_tsquery(?)", json_key, json_value).all
+      @records = current_user.records.where("to_tsvector(jsonb_extract_path_text(json, ?)) @@ to_tsquery(?)", json_key, json_value).paginate(:page => params[:page])
     end
   end
 
