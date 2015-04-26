@@ -16,6 +16,23 @@ class RecordsController < ApplicationController
     end
   end
 
+  def show
+    @record = current_user.records.find(params[:id])
+  end
+
+  def edit
+    @record = current_user.records.find(params[:id])
+  end
+
+  def update
+    record = current_user.records.find(params[:id])
+    record.assign_attributes(record_params)
+    
+    if record.save
+      redirect_to records_path
+    end  
+  end
+
   private
   
     def record_params

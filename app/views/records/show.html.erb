@@ -1,0 +1,9 @@
+<div class="col-sm-6 col-xs-12">
+  <h2>JSON Document: <%= @record.id %></h2>
+  
+  <%= link_to 'Edit JSON Document', edit_record_path(@record), class: 'btn btn-primary' %>
+  
+  <br><br>
+  
+  <pre><%= @record.json %></pre>
+</div>
