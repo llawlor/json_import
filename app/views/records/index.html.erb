@@ -2,10 +2,10 @@
   <h2>JSON Documents</h2>
   
   <%= link_to 'New JSON Document', new_record_path, class: 'btn btn-primary' %>
-  
-  <% if @records.any? %>
+
+  <% if @records.present? %>
     <table class='table'>
-      <%= @records.each do |record| %>
+      <% @records.each do |record| %>
         <tr><td><%= link_to record.id, record %></td></tr>
       <% end %>
     </table>
