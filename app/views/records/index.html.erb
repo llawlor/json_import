@@ -1,12 +1,28 @@
-<div class="col-sm-6 col-xs-12">
+<div class="col-sm-8 col-xs-12">
   <h2>JSON Documents</h2>
   
-  <%= link_to 'New JSON Document', new_record_path, class: 'btn btn-primary' %>
+  <%= link_to 'New JSON Document', new_record_path, class: 'btn btn-primary btn-sm' %>
 
+  <br><br>
+  
+  <form>
+    <div class="input-group col-sm-12 col-xs-12">
+      <input type="text" placeholder="Search your JSON documents" class="form-control">
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary">Search</button>
+      </span>
+    </div>
+  </form>
+
+  <br><br>
+  
   <% if @records.present? %>
     <table class='table'>
       <% @records.each do |record| %>
-        <tr><td><%= link_to record.id, record %></td></tr>
+        <tr>
+          <td><%= link_to record.id, record %></td>
+          <td><code><%= record.json %></code></td>
+        </tr>
       <% end %>
     </table>
   <% end %>
