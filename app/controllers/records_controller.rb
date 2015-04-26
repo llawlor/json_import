@@ -11,7 +11,8 @@ class RecordsController < ApplicationController
     
     # for each json record
     json_records.each do |json_record|
-      current_user.records.create(json: json_record)
+      new_record = current_user.records.create(json: json_record)
+      new_record.update_user_json_keys!
     end
   
     flash[:notice] = 'Upload complete'
@@ -49,25 +50,31 @@ class RecordsController < ApplicationController
     end
   end
 
+  # show page
   def show
     @record = current_user.records.find(params[:id])
   end
 
+  # edit page
   def edit
     @record = current_user.records.find(params[:id])
   end
 
+  # record is updated
   def update
     record = current_user.records.find(params[:id])
     record.assign_attributes(record_params)
     
+    # if the record was saved successfully
     if record.save
+      record.update_user_json_keys!
       redirect_to records_path
     end  
   end
 
   private
   
+    # permitted record parameters
     def record_params
       params.require(:record).permit(:json)
     end
