@@ -4,8 +4,18 @@
 
   <div class="form-group">
     <label for="record_json">Raw JSON</label>
-    <%= f.text_area :json, value: @saved_json || @record.json_formatted, class: 'form-control', placeholder: 'Add JSON document here', rows: 10 %>
+    <%= f.text_area :json, value: @saved_json || @record.json.to_json, class: 'form-control', placeholder: 'Add JSON document here', rows: 10 %>
   </div>
   
   <%= f.submit 'Submit', class: 'btn btn-primary' %>
 <% end %>
+
+
+<script>
+  // get the json object
+  var json = $.parseJSON($("#record_json").text());
+  // pretty print it
+  json = JSON.stringify(json, null, 2);
+  // add it back to the div
+  $("#record_json").html(json);
+</script>
