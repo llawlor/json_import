@@ -1,4 +1,5 @@
 class RecordsController < ApplicationController
+  before_filter :fix_json_param, only: [:update, :create]
 
   # import view
   def import; ; end
@@ -50,6 +51,8 @@ class RecordsController < ApplicationController
       redirect_to records_path
     # else errors
     else
+      # reset json
+      @saved_json = params[:record][:json]
       render :new
     end
   end
@@ -74,6 +77,8 @@ class RecordsController < ApplicationController
       @record.update_user_json_keys!
       redirect_to records_path
     else
+      # reset json
+      @saved_json = params[:record][:json]
       render :edit
     end  
   end
@@ -83,6 +88,11 @@ class RecordsController < ApplicationController
     # permitted record parameters
     def record_params
       params.require(:record).permit(:json)
+    end
+    
+    # fix the json parameter
+    def fix_json_param
+      params[:record][:json] = params[:record][:json].gsub("\r\n", "")
     end
 
 end

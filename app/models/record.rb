@@ -20,7 +20,10 @@ class Record < ActiveRecord::Base
   
   # output the json in a format that can be rendered via HTML <pre>
   def json_formatted
-    JSON.pretty_generate(self.json).gsub("\\\\n", "\n").gsub("\\n", "\n").gsub("\n\n", "\n")
+    begin
+      JSON.pretty_generate(self.json).gsub("\\\\n", "\n").gsub("\\n", "\n").gsub("\n\n", "\n")
+    rescue
+    end
   end
   
   # get the json keys, and add it to the user account
