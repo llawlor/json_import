@@ -15,4 +15,16 @@ function formatJSON() {
     // add it back to the div
     $("#record_json").html(json);
   }
+  
+  // if #record_json_html exists
+  if ($('#record_json_html').length > 0 && $("#record_json_html").text().length > 0) {
+    // allow the json to be edited
+    $('#record_json_html')[0].contentEditable = true;
+    // get the json object
+    var json = $.parseJSON($("#record_json_html").text());
+    // pretty print it
+    json = JSON.stringify(json, null, 2);
+    // add it back to the div
+    $("#record_json_html").html(json);
+  }
 }
