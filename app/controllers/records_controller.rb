@@ -74,6 +74,7 @@ class RecordsController < ApplicationController
     # if the record was saved successfully
     if @record.save
       @record.update_user_json_keys!
+      flash[:notice] = 'Document saved.'
       redirect_to @record
     else
       # reset json

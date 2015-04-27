@@ -2,6 +2,8 @@
 $(document).on('ready page:load', function() {
   // fix the json
   formatJSON();
+  // make some preformatted text look nicer
+  prettyPrint();
 });
 
 // fix any json records for display
