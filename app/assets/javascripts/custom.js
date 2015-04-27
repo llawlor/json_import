@@ -4,6 +4,20 @@ $(document).on('ready page:load', function() {
   formatJSON();
   // make some preformatted text look nicer
   prettyPrint();
+  
+  // allow flash notices to be dismissed
+  if ($(".flash").length > 0) {
+    $(".flash").on("click", function() {
+      $(this).hide("slow");
+    });
+    // hide flash automatically after 15 seconds
+    setTimeout(function() {
+      if ($(".flash").length > 0) {
+        $(".flash").hide("slow");
+      }
+    }, 15000);
+  }
+  
 });
 
 // fix any json records for display
