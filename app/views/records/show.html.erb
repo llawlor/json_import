@@ -8,11 +8,4 @@
   <pre id="record_json"><%= @record.json.to_json %></pre>
 </div>
 
-<script>
-  // get the json object
-  var json = $.parseJSON($("#record_json").text());
-  // pretty print it
-  json = JSON.stringify(json, null, 2);
-  // add it back to the div
-  $("#record_json").html(json);
-</script>
+
