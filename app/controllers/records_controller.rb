@@ -26,10 +26,10 @@ class RecordsController < ApplicationController
     
     # if no search term is present
     if search.blank? || key.blank?
-      @records = current_user.records.paginate(:page => params[:page])
+      @records = current_user.records.order("updated_at desc").paginate(:page => params[:page])
     # else perform full text search
     else
-      @records = current_user.records.where("to_tsvector(jsonb_extract_path_text(json, ?)) @@ plainto_tsquery(?)", key, search).paginate(:page => params[:page])
+      @records = current_user.records.where("to_tsvector(jsonb_extract_path_text(json, ?)) @@ plainto_tsquery(?)", key, search).order("updated_at desc").paginate(:page => params[:page])
       # save key to cookie
       session[:search_key] = key
     end
@@ -74,6 +74,7 @@ class RecordsController < ApplicationController
     # if the record was saved successfully
     if @record.save
       @record.update_user_json_keys!
+      flash[:notice] = 'Document saved.'
       redirect_to @record
     else
       # reset json

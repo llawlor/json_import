@@ -2,6 +2,22 @@
 $(document).on('ready page:load', function() {
   // fix the json
   formatJSON();
+  // make some preformatted text look nicer
+  prettyPrint();
+  
+  // allow flash notices to be dismissed
+  if ($(".flash").length > 0) {
+    $(".flash").on("click", function() {
+      $(this).hide("slow");
+    });
+    // hide flash automatically after 15 seconds
+    setTimeout(function() {
+      if ($(".flash").length > 0) {
+        $(".flash").hide("slow");
+      }
+    }, 15000);
+  }
+  
 });
 
 // fix any json records for display
@@ -14,5 +30,17 @@ function formatJSON() {
     json = JSON.stringify(json, null, 2);
     // add it back to the div
     $("#record_json").html(json);
+  }
+  
+  // if #record_json_html exists
+  if ($('#record_json_html').length > 0 && $("#record_json_html").text().length > 0) {
+    // allow the json to be edited
+    $('#record_json_html')[0].contentEditable = true;
+    // get the json object
+    var json = $.parseJSON($("#record_json_html").text());
+    // pretty print it
+    json = JSON.stringify(json, null, 2);
+    // add it back to the div
+    $("#record_json_html").html(json);
   }
 }

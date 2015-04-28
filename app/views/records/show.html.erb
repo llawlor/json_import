@@ -1,11 +1,28 @@
 <div class="col-sm-12 col-xs-12">
   <h2>JSON Document: <%= @record.id %></h2>
   
-  <%= link_to 'Edit JSON Document', edit_record_path(@record), class: 'btn btn-primary' %>
+  You can directly edit the JSON document below.
   
   <br><br>
   
-  <pre id="record_json"><%= @record.json.to_json %></pre>
+  <pre id="record_json_html" class="record_json prettyprint linenums" spellcheck=false><%= @record.json.to_json %></pre>
+  
+  <%= render 'form' %>
 </div>
 
+<script>
 
+  // hide the text area
+  $('#record_json_form_group').css('display', 'none');
+  
+  // intercept the save button click
+  $('#save_button').on('click', function() {
+    // set the textarea to the proper value
+    $('#record_json').val($('#record_json_html').text());
+    // submit the form
+    $('#json_form')[0].submit();
+    // override default button behavior
+    return false;
+  });
+
+</script>
