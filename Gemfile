@@ -12,9 +12,6 @@ gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'dynamic_form'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 group :development, :test do
   gem 'spring'
 end
@@ -23,5 +20,6 @@ group :development do
   gem 'puma'
   gem 'annotate'
   gem 'quiet_assets'
+  gem 'capistrano-rails'
 end
 
