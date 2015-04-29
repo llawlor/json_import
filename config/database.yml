@@ -18,3 +18,12 @@ test:
   pool: 5
   username: jsonimport
   password: jsonimport
+  
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: json_import_development
+  host: localhost
+  pool: 5
+  username: jsonimport
+  password: jsonimport
