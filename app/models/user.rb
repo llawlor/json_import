@@ -27,4 +27,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
          
   has_many :records
+  
+  # true if the user has reached the maximum number of records
+  def records_limit_reached?
+    self.records.count >= self.records_limit
+  end
 end

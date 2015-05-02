@@ -1,5 +1,6 @@
 class RecordsController < ApplicationController
-
+  before_filter :check_records_limit, only: [:new, :create, :import, :upload]
+  
   # import view
   def import; ; end
 
@@ -11,6 +12,14 @@ class RecordsController < ApplicationController
     
     # for each json record
     json_records.each do |json_record|
+    
+      # check records limit
+      if current_user.records_limit_reached?
+        flash[:alert] = 'Sorry, you have reached the maximum number of records.'
+        redirect_to records_path and return
+      end
+      
+      # add the record
       new_record = current_user.records.create(json: json_record)
       new_record.update_user_json_keys!
     end
@@ -41,7 +50,7 @@ class RecordsController < ApplicationController
   end
 
   # create a new record
-  def create
+  def create 
     @record = current_user.records.new(record_params)
     
     # if the record was saved successfully
@@ -90,4 +99,11 @@ class RecordsController < ApplicationController
       params.require(:record).permit(:json)
     end
 
+    # check if we're at the maximum records
+    def check_records_limit
+      if current_user.records_limit_reached?
+        flash[:alert] = 'Sorry, you have reached the maximum number of records.'
+        redirect_to records_path and return
+      end
+    end
 end
