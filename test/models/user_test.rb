@@ -16,6 +16,7 @@
 #  created_at             :datetime
 #  updated_at             :datetime
 #  json_keys              :text             default([]), is an Array
+#  records_limit          :integer          default(1000)
 #
 
 require 'test_helper'
