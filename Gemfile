@@ -21,5 +21,6 @@ group :development do
   gem 'annotate'
   gem 'quiet_assets'
   gem 'capistrano-rails'
+  gem 'byebug'
 end
 
