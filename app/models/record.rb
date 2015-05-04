@@ -18,15 +18,6 @@ class Record < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 15
   
-  # replaces line breaks
-  def fix_line_breaks!
-    self.json.each do |hash|
-    byebug
-      #hash = value.gsub("\\\\n", "\n").gsub("\\n", "\n")
-    end
-    self.save
-  end
-  
   # get the json keys, and add it to the user account
   def update_user_json_keys!
     return if self.json.blank?
