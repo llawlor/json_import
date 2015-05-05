@@ -40,7 +40,7 @@
 
   // set behavior of json inputs
   function setJsonInputListeners() {
-    $('.json-text').on('click', function() {
+    $('.json-text').on('mouseover', function() {
       setJsonInput($(this));
     });
   }
@@ -59,7 +59,7 @@
     // hide the text
     $element.hide();
     // show the input
-    $element.siblings().show();
+    $element.siblings('.json-input').show();
   }
 
 </script>
