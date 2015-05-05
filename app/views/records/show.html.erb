@@ -7,6 +7,10 @@
   
   <pre id="record_json_html" class="record_json prettyprint linenums" spellcheck=false><%= @record.json.to_json %></pre>
   
+  <div>
+    <%= raw json_as_html(@record.json) %>
+  </div>
+  
   <%= render 'form' %>
 </div>
 
@@ -26,6 +30,26 @@
       return false;
     });
 
+    // set behavior of json inputs
+    setJsonInputListeners();
+
   });
+
+  // set behavior of json inputs
+  function setJsonInputListeners() {
+    $('.json-text').on('click', function() {
+      setJsonInput($(this));
+    });
+  }
+
+  // sets an input
+  function setJsonInput($element) {
+    // create the input
+    var $input = $("<input type='text' class='json-input'>");
+    // set the input value
+    $input.val($element.text());
+    // replace with the input
+    $element.replaceWith($input);
+  }
 
 </script>
