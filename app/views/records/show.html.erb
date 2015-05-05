@@ -29,7 +29,10 @@
       // override default button behavior
       return false;
     });
-
+    
+    // hide all inputs initially
+    $('.json-input').hide();
+    
     // set behavior of json inputs
     setJsonInputListeners();
 
@@ -42,14 +45,21 @@
     });
   }
 
+  // hides json inputs and shows the text
+  function revertJsonInputs() {
+    $('.json-input').hide();
+    $('.json-text').show();
+  }
+
   // sets an input
   function setJsonInput($element) {
-    // create the input
-    var $input = $("<input type='text' class='json-input'>");
-    // set the input value
-    $input.val($element.text());
-    // replace with the input
-    $element.replaceWith($input);
+    // revert json inputs back to text
+    revertJsonInputs();
+    
+    // hide the text
+    $element.hide();
+    // show the input
+    $element.siblings().show();
   }
 
 </script>
