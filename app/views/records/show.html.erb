@@ -36,12 +36,21 @@
     // set behavior of json inputs
     setJsonInputListeners();
 
+    // clicks outside of the table
+    $(document).on('click', function() {
+      revertJsonInputs();
+    });
+
   });
 
   // set behavior of json inputs
   function setJsonInputListeners() {
+    // when a cell is clicked
     $('.json-hash').on('click', function() {
+      // set the input
       setJsonInput($(this).find('.json-text'));
+      // prevent the document click from firing and reverting the inputs
+      event.stopPropagation();
     });
   }
 

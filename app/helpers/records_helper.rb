@@ -1,10 +1,15 @@
 module RecordsHelper
 
   # convert line endings correctly
-  def fixlines(value)
-    value.class == String ? value.gsub("\\\\n", "\n").gsub("\\n", "\n") : value
+  def fix_input_lines(value)
+    value.class == String ? value.gsub("\\n", "\n") : value.to_s
   end
 
+  # convert line endings correctly for html
+  def fix_html_lines(value)
+    value.class == String ? value.gsub("\\n", "<br>").gsub("\n", "<br>") : value.to_s
+  end
+  
   # add classes to keys and values
   def json_as_html(json)
     # opening table html
@@ -20,9 +25,9 @@ module RecordsHelper
       # add html for the cell
       html += "</td><td class='json-hash json-value col-sm-10 col-xs-12'>";
       # add html for the value text
-      html += "<span class='json-text'>#{json[key]}</span>";
+      html += "<span class='json-text'>#{fix_html_lines(json[key])}</span>";
       # add html for the value textarea
-      html += "<textarea class='json-input json-value form-control' rows='8'>#{fixlines(json[key])}</textarea>";
+      html += "<textarea class='json-input json-value form-control' rows='8'>#{fix_input_lines(json[key])}</textarea>";
       # add closing cell and row html
       html += "</td></tr>"
     end
