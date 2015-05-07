@@ -40,8 +40,8 @@
 
   // set behavior of json inputs
   function setJsonInputListeners() {
-    $('.json-text').on('mouseover', function() {
-      setJsonInput($(this));
+    $('.json-hash').on('click', function() {
+      setJsonInput($(this).find('.json-text'));
     });
   }
 

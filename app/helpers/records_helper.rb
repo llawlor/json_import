@@ -17,7 +17,7 @@ module RecordsHelper
       # add html for the value text
       html += "<span class='json-text'>#{json[key]}</span>";
       # add html for the value textarea
-      html += "<textarea class='json-input json-value form-control'>#{json[key]}</textarea>";
+      html += "<textarea class='json-input json-value form-control' rows='8'>#{json[key]}</textarea>";
       # add closing cell and row html
       html += "</td></tr>"
     end
