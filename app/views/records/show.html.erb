@@ -4,9 +4,7 @@
   You can directly edit the JSON document below.
   
   <br><br>
-  
-  <pre id="record_json_html" class="record_json prettyprint linenums" spellcheck=false><%= @record.json.to_json %></pre>
-  
+
   <div>
     <%= raw json_as_html(@record.json) %>
   </div>
@@ -23,7 +21,7 @@
     // intercept the save button click
     $('#save_button').on('click', function() {
       // set the textarea to the proper value
-      $('#record_json').val($('#record_json_html').text());
+      setFormJson();
       // submit the form
       $('#json_form')[0].submit();
       // override default button behavior
@@ -42,6 +40,36 @@
     });
 
   });
+
+  // sets the value for the json in the form
+  function setFormJson() {
+    // opening json string
+    var json_string = '{';
+    
+    // for each json input
+    $('.json-input').each(function() {
+      // add the quoted string
+      json_string += '"' + $(this).val().replace(/"/g, '\\"') + '"';
+      // add a colon if this is a json key
+      if ($(this).hasClass('json-key')) { json_string += ': '; }
+      // else add a comma
+      else { json_string += ', '; }
+    });
+    
+    // remove the last 2 character: comma space
+    if (json_string.length > 2) {
+      json_string = json_string.slice(0, -2);
+    }
+    
+    // closing json string
+    json_string += '}';
+
+    // replace line endings
+    json_string = json_string.replace(/\n/g, '\\n');
+
+    // set the form element
+    $('#record_json').val(json_string);
+  }
 
   // set behavior of json inputs
   function setJsonInputListeners() {
