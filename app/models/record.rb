@@ -16,7 +16,15 @@ class Record < ActiveRecord::Base
   
   # pagination variables
   cattr_reader :per_page
-  @@per_page = 15
+  @@per_page = 20
+  
+  # text to display on the index page
+  def title
+    output = self.json['title'].present? ? "<b>#{self.json['title'].to_s}</b> " : ''
+    output += self.json[self.json.keys.first].to_s + ' '
+    output += self.json.to_s
+    return output
+  end
   
   # get the json keys, and add it to the user account
   def update_user_json_keys!
