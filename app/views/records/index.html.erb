@@ -38,11 +38,11 @@
     <b><%= @records.total_entries %> records found.</b>
     <br><br>
   
-    <table class='table'>
+    <table class="table table-striped">
       <% @records.each do |record| %>
         <tr>
-          <td><a href="<%= url_for(record) %>"><%= truncate(record.title, length: 70, escape: false) %></a></td>
-          <td><%= record.updated_at %></td>
+          <td><div class="record-div-fixed"><a href="<%= url_for(record) %>" class="record-link"><%= truncate(record.title, length: 200, escape: false) %></a></div></td>
+          <td class="record-time"><%= time_ago_in_words(record.updated_at) %> ago</td>
         </tr>
       <% end %>
     </table>
