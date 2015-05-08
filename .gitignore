@@ -13,7 +13,6 @@ rerun.txt
 pickle-email-*.html
 
 # ignore capistrano files
-config/deploy.rb
 config/deploy/*
 
 # TODO Comment out these rules if you are OK with secrets being uploaded to the repo
