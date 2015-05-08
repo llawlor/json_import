@@ -1,5 +1,6 @@
 .errorExplanation               { background-color: #ffdddd; padding: 15px; }
 .json-hash:hover                { background-color: #eee; cursor: pointer; }
 .record-div-fixed               { height: 40px; overflow: hidden; }
-.record-link                    { text-decoration: none !important; color: #444; }
+.record-link                    { text-decoration: none !important; color: #aaa; }
+.record-link b                  { color: #444; }
 .record-time                    { color: #aaa; width: 100px; }
