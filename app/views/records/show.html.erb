@@ -36,7 +36,7 @@
 
     // clicks outside of the table
     $(document).on('click', function() {
-      revertJsonInputs();
+      hideJsonInputs();
     });
 
   });
@@ -82,16 +82,24 @@
     });
   }
 
-  // hides json inputs and shows the text
-  function revertJsonInputs() {
-    $('.json-input').hide();
+  // hides json inputs and shows the input text
+  function hideJsonInputs() {
+    // for each json input
+    $('.json-input').each(function() {
+      // set the text correctly
+      $(this).siblings('.json-text').text($(this).val());
+      // hide this
+      $(this).hide();
+    });
+    
+    // show the text
     $('.json-text').show();
   }
 
   // sets an input
   function setJsonInput($element) {
     // revert json inputs back to text
-    revertJsonInputs();
+    hideJsonInputs();
     
     // hide the text
     $element.hide();
