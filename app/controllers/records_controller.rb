@@ -80,6 +80,9 @@ class RecordsController < ApplicationController
     @record = current_user.records.find(params[:id])
     @record.assign_attributes(record_params)
     
+    # delete any blank rows
+    @record.json.delete("")
+    
     # if the record was saved successfully
     if @record.save
       @record.update_user_json_keys!
