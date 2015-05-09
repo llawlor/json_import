@@ -1,7 +1,5 @@
 // when the document is ready
 $(document).on('ready page:load', function() {
-  // fix the json
-  formatJSON();
   // make some preformatted text look nicer
   prettyPrint();
   
@@ -18,29 +16,102 @@ $(document).on('ready page:load', function() {
     }, 15000);
   }
   
+  // only set json on this page
+  if ($('#json_show_page').length > 0) {
+    setJsonShowPage();
+  }
+    
 });
 
-// fix any json records for display
-function formatJSON() {
-  // if #record_json exists
-  if ($('#record_json').length > 0 && $("#record_json").text().length > 0) {
-    // get the json object
-    var json = $.parseJSON($("#record_json").text());
-    // pretty print it
-    json = JSON.stringify(json, null, 2);
-    // add it back to the div
-    $("#record_json").html(json);
+// set javascript for json show page
+function setJsonShowPage() {
+  // hide the text area
+  $('#record_json_form_group').css('display', 'none');
+  
+  // intercept the save button click
+  $('#save_button').on('click', function() {
+    // set the textarea to the proper value
+    setFormJson();
+    // submit the form
+    $('#json_form')[0].submit();
+    // override default button behavior
+    return false;
+  });
+  
+  // hide all inputs initially
+  $('.json-input').hide();
+  
+  // set behavior of json inputs
+  setJsonInputListeners();
+
+  // clicks outside of the table
+  $(document).on('click', function() {
+    hideJsonInputs();
+  });
+}
+
+// sets the value for the json in the form
+function setFormJson() {
+  // opening json string
+  var json_string = '{';
+  
+  // for each json input
+  $('.json-input').each(function() {
+    // add the quoted string
+    json_string += '"' + $(this).val().replace(/"/g, '\\"') + '"';
+    // add a colon if this is a json key
+    if ($(this).hasClass('json-key')) { json_string += ': '; }
+    // else add a comma
+    else { json_string += ', '; }
+  });
+  
+  // remove the last 2 character: comma space
+  if (json_string.length > 2) {
+    json_string = json_string.slice(0, -2);
   }
   
-  // if #record_json_html exists
-  if ($('#record_json_html').length > 0 && $("#record_json_html").text().length > 0) {
-    // allow the json to be edited
-    $('#record_json_html')[0].contentEditable = true;
-    // get the json object
-    var json = $.parseJSON($("#record_json_html").text());
-    // pretty print it
-    json = JSON.stringify(json, null, 2);
-    // add it back to the div
-    $("#record_json_html").html(json);
-  }
+  // closing json string
+  json_string += '}';
+
+  // replace line endings
+  json_string = json_string.replace(/\n/g, '\\n');
+
+  // set the form element
+  $('#record_json').val(json_string);
+}
+
+// set behavior of json inputs
+function setJsonInputListeners() {
+  // when a cell is clicked
+  $('.json-hash').on('click', function() {
+    // set the input
+    setJsonInput($(this).find('.json-text'));
+    // prevent the document click from firing and reverting the inputs
+    event.stopPropagation();
+  });
+}
+
+// hides json inputs and shows the input text
+function hideJsonInputs() {
+  // for each json input
+  $('.json-input').each(function() {
+    // set the text correctly
+    $(this).siblings('.json-text').text($(this).val());
+    // hide this
+    $(this).hide();
+  });
+  
+  // show the text
+  $('.json-text').show();
+}
+
+// sets an input
+function setJsonInput($element) {
+  // revert json inputs back to text
+  hideJsonInputs();
+  
+  // hide the text
+  $element.hide();
+  // show the input
+  $element.siblings('.json-input').show();
 }
