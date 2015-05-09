@@ -109,9 +109,8 @@ function hideJsonInputs() {
 function setJsonInput($element) {
   // revert json inputs back to text
   hideJsonInputs();
-  
-  // hide the text
-  $element.hide();
   // show the input
   $element.siblings('.json-input').show();
+  // hide the text, must be hidden after the siblings are shown or else android keyboard doesn't appear
+  $element.hide();
 }
