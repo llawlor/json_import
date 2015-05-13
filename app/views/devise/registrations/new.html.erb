@@ -7,17 +7,17 @@
       <%= devise_error_messages! %>
 
       <div class="form-group">
-        <label class="col-sm-4 col-xs-3 control-label"><%= t(:email) %></label>
+        <label class="col-sm-4 col-xs-3 control-label">Email</label>
         <div class="col-sm-8 col-xs-6"><%= f.text_field :email, :class => 'form-control' %></div>
       </div>
 
       <div class="form-group">
-        <label class="col-sm-4 col-xs-3 control-label"><%= t(:password) %></label>
+        <label class="col-sm-4 col-xs-3 control-label">Password</label>
         <div class="col-sm-8 col-xs-6"><%= f.password_field :password, :class => 'form-control' %></div>
       </div>
 
       <div class="form-group">
-        <label class="col-sm-4 col-xs-3 control-label"><%= t(:password_confirmation) %></label>
+        <label class="col-sm-4 col-xs-3 control-label">Password Confirmation</label>
         <div class="col-sm-8 col-xs-6"><%= f.password_field :password_confirmation, :class => 'form-control' %></div>
       </div>
 
