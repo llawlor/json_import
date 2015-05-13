@@ -10,7 +10,7 @@
 #
 
 class Record < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :user, dependent: destroy
   
   validate :json_format
   
