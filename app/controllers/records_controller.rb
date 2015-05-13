@@ -1,6 +1,16 @@
 class RecordsController < ApplicationController
   before_filter :check_records_limit, only: [:new, :create, :import, :upload]
   
+  # delete an entry
+  def destroy
+    @record = current_user.records.find(params[:id])
+    if @record.present?
+      @record.destroy 
+      flash[:alert] = 'Document deleted.'
+    end
+    redirect_to records_path
+  end
+  
   # import view
   def import; ; end
 

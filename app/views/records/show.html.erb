@@ -10,5 +10,10 @@
   </div>
   
   <%= render 'form' %>
+  
+  <br><br><br><br>
+  
+  <h3>Want to delete this document?</h3>
+  <%= button_to 'Delete Document', record_path(@record), :method => 'delete', :data => { :confirm => 'Are you sure you want to delete this JSON document?' }, :class => 'btn btn-danger btn-sm' %>
 </div>
 
