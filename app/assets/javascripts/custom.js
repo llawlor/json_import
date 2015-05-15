@@ -30,6 +30,13 @@ $(document).on('click', '#default_json', function() {
   }
 });
 
+// clicks outside of the table
+$(document).on('click', function() {
+  if ($('#json_show_page').length > 0) {
+    hideJsonInputs();
+  }
+});
+  
 // set javascript for json show page
 function setJsonShowPage() {
   // hide the text area
@@ -50,11 +57,6 @@ function setJsonShowPage() {
   
   // set behavior of json inputs
   setJsonInputListeners();
-
-  // clicks outside of the table
-  $(document).on('click', function() {
-    hideJsonInputs();
-  });
 }
 
 // sets the value for the json in the form
