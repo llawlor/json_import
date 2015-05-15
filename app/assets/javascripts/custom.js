@@ -66,8 +66,9 @@ function setFormJson() {
   
   // for each json input
   $('.json-input').each(function() {
+    var value = $(this).val().replace(/"/g, '\\"').replace(/\t/g, '  ');
     // add the quoted string
-    json_string += '"' + $(this).val().replace(/"/g, '\\"') + '"';
+    json_string += '"' + value + '"';
     // add a colon if this is a json key
     if ($(this).hasClass('json-key')) { json_string += ': '; }
     // else add a comma
