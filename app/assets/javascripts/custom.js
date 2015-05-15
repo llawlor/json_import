@@ -20,7 +20,14 @@ $(document).on('ready page:load', function() {
   if ($('#json_show_page').length > 0) {
     setJsonShowPage();
   }
-    
+
+});
+
+// when the default json button is clicked
+$(document).on('click', '#default_json', function() {
+  if ($('#record_json').val() === '') {
+    $('#record_json').val('{\n  "title": "",\n  "text": ""\n}');
+  }
 });
 
 // set javascript for json show page
