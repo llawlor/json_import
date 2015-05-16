@@ -10,6 +10,7 @@ Rails.application.routes.draw do
         get 'import'
         post 'upload'
         delete 'delete'
+        post 'export'
       end
     end
   end

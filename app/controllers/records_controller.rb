@@ -1,6 +1,11 @@
 class RecordsController < ApplicationController
   before_filter :check_records_limit, only: [:new, :create, :import, :upload]
   
+  # export all json documents
+  def export
+    send_data current_user.records.select(:json).collect(&:json), filename: 'records.json'
+  end
+  
   # delete all entries
   def delete
     # delete the records
@@ -45,7 +50,7 @@ class RecordsController < ApplicationController
     end
   
     flash[:notice] = 'Upload complete'
-    redirect_to :back
+    redirect_to records_path
   end
   
   # view all documents or search results

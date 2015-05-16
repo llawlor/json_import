@@ -2,7 +2,8 @@
   <h2>JSON Documents</h2>
   
   <%= link_to 'New JSON Document', new_record_path, class: 'btn btn-primary btn-sm pull-left', style: 'margin-right: 20px;' %>
-  <%= link_to 'Upload JSON Documents', import_records_path, class: 'btn btn-primary btn-sm pull-left' %>
+  <%= link_to 'Upload JSON Documents', import_records_path, class: 'btn btn-primary btn-sm pull-left', style: 'margin-right: 20px;' %>
+  <%= link_to 'Download JSON Documents', export_records_path, method: :post, class: 'btn btn-primary btn-sm pull-left' %>
   
   <br><br>
   
