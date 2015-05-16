@@ -3,7 +3,11 @@ class RecordsController < ApplicationController
   
   # delete all entries
   def delete
+    # delete the records
     current_user.records.find_each { |record| record.destroy }
+    # reset user info
+    current_user.update_column(:json_keys, [])
+    # redirect
     redirect_to records_path
   end
   
