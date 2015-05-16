@@ -45,7 +45,21 @@ class RecordsController < ApplicationController
       end
       
       # add the record
-      new_record = current_user.records.create(json: json_record)
+      new_record = current_user.records.new(json: json_record)
+      
+      # if the created_at date is present
+      if json_record['created_at'].present?
+        begin
+          parsed_time = Time.parse(json_record['created_at'])
+          new_record.created_at = parsed_time
+          new_record.updated_at = parsed_time
+        rescue
+        end
+      end
+      
+      # save the record
+      new_record.save
+      # update user keys
       new_record.update_user_json_keys!
     end
   
