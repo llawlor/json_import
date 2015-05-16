@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       collection do
         get 'import'
         post 'upload'
+        delete 'delete'
       end
     end
   end
