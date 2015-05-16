@@ -3,7 +3,7 @@ class RecordsController < ApplicationController
   
   # export all json documents
   def export
-    send_data current_user.records.select(:json).collect(&:json), filename: 'records.json'
+    send_data current_user.records.select(:json).collect(&:json).to_json, filename: 'records.json'
   end
   
   # delete all entries

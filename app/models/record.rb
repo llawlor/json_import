@@ -18,11 +18,6 @@ class Record < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 20
   
-  # custom json output
-  #def as_json(options = {})
-  #  super(except: [:id, :user_id
-  #end
-  
   # text to display on the index page
   def title
     output = self.json['title'].present? ? "<b>#{self.json['title'].to_s}</b> " : ''
