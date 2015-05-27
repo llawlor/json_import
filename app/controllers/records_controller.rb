@@ -128,7 +128,7 @@ class RecordsController < ApplicationController
       # push to redis
       conn = Hiredis::Connection.new
       conn.connect("127.0.0.1", 6379)
-      conn.write ["SET", "record", @record.to_json]
+      conn.write ["PUBLISH", "record", @record.to_json]
       conn.read
       
       @record.update_user_json_keys!

@@ -17,3 +17,8 @@
   <%= button_to 'Delete Document', record_path(@record), :method => 'delete', :data => { :confirm => 'Are you sure you want to delete this JSON document?' }, :class => 'btn btn-danger btn-sm' %>
 </div>
 
+<script>
+var ws = $.websocket("ws://192.168.56.101:8080/");
+
+</script>
+
