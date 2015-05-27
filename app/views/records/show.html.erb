@@ -18,7 +18,12 @@
 </div>
 
 <script>
-var ws = $.websocket("ws://192.168.56.101:8080/");
-
+  // initialize websocket
+  var ws = new WebSocket("ws://192.168.56.101:8080/");
+  
+  ws.onopen = function() {
+    // listen to changes
+    ws.send(JSON.stringify({ action: 'subscribe', channel: 5 }));
+  }
 </script>
 

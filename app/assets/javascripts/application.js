@@ -14,5 +14,4 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require prettify
-//= require websocket
 //= require custom
