@@ -17,13 +17,13 @@ module RecordsHelper
     # for each key
     json.keys.each do |key|
       # add opening row and cell html
-      html += "<tr><td class='json-hash json-key col-sm-2 col-xs-12'>";
+      html += "<tr><td class='json-hash json-key col-sm-2 col-xs-4'>";
       # add html for the key text
       html += "<span class='json-text'>#{key}</span>";
       # add html for the key input
       html += "<input type='text' class='json-input json-key form-control' value='#{key}'>";
       # add html for the cell
-      html += "</td><td class='json-hash json-value col-sm-10 col-xs-12'>";
+      html += "</td><td class='json-hash json-value col-sm-10 col-xs-8'>";
       # add html for the value text
       html += "<span class='json-text'>#{fix_html_lines(json[key])}</span>";
       # add html for the value textarea
