@@ -25,5 +25,16 @@
     // listen to changes
     ws.send(JSON.stringify({ action: 'subscribe', channel: 5 }));
   }
+  
+  ws.onmessage = function(msg) {
+    // parse the json message
+    // todo: handle non-json messages
+    var json = JSON.parse(msg.data);
+    var text = json.json.text;
+    var title = json.json.title;
+    // update UI
+    $('.bind-text').text(text);
+    $('.bind-title').text(title);
+  }
 </script>
 

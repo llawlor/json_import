@@ -18,14 +18,14 @@ EM.run {
       # path, query_string, origin, headers
 
       # Publish message to the client
-      ws.send "Hello Client, you connected to #{handshake.path}"
+      #ws.send "Hello Client, you connected to #{handshake.path}"
     }
 
     ws.onclose { puts "Connection closed" }
 
     ws.onmessage { |msg|
       puts "Recieved message: #{msg}"
-      ws.send "Pong: #{msg}"
+      #ws.send "Pong: #{msg}"
       
       json = JSON.parse(msg)
       
@@ -35,6 +35,7 @@ EM.run {
         pubsub.subscribe('record')
         pubsub.on(:message) { |channel, message|
           p [:message, channel, message]
+          ws.send message
         }
         
       end
