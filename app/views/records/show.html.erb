@@ -23,7 +23,7 @@
   
   ws.onopen = function() {
     // listen to changes
-    ws.send(JSON.stringify({ action: 'subscribe', key: '<%= "#{@record.class.name}-#{@record.id}" %>' }));
+    ws.send(JSON.stringify({ action: 'subscribe', key: '<%= @record.bind_key %>' }));
   }
   
   ws.onmessage = function(msg) {

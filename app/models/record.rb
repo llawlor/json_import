@@ -18,6 +18,11 @@ class Record < ActiveRecord::Base
   cattr_reader :per_page
   @@per_page = 20
   
+  # key to use for meteorite binding
+  def bind_key
+    "#{self.class.name}-#{self.id}"
+  end
+  
   # text to display on the index page
   def title
     output = self.json['title'].present? ? "<b>#{self.json['title'].to_s}</b> " : ''
