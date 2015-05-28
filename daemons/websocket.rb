@@ -32,7 +32,8 @@ EM.run {
       if json['action'] == 'subscribe'
       
         # subscribe
-        pubsub.subscribe('record')
+        pubsub.subscribe(json['key'])
+        puts "subscribe to: #{json['key']}"
         pubsub.on(:message) { |channel, message|
           p [:message, channel, message]
           ws.send message

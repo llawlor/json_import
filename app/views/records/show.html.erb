@@ -6,7 +6,7 @@
   <br><br>
 
   <div>
-    <%= raw json_as_html(@record.json) %>
+    <%= raw json_as_html(@record) %>
   </div>
   
   <%= render 'form' %>
@@ -23,7 +23,7 @@
   
   ws.onopen = function() {
     // listen to changes
-    ws.send(JSON.stringify({ action: 'subscribe', channel: 5 }));
+    ws.send(JSON.stringify({ action: 'subscribe', key: '<%= "#{@record.class.name}-#{@record.id}" %>' }));
   }
   
   ws.onmessage = function(msg) {
