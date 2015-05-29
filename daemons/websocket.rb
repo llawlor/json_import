@@ -36,7 +36,7 @@ EM.run {
         puts "subscribe to: #{json['key']}"
         pubsub.on(:message) { |channel, message|
           p [:message, channel, message]
-          ws.send message
+          ws.send({bind_key: channel, bind_data: message}.to_json)
         }
         
       end

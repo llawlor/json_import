@@ -9,6 +9,14 @@
     <%= raw json_as_html(@record) %>
   </div>
   
+  <div class="meteorite" data-bind_key="<%= @record.bind_key %>" data-bind_attr="json">
+    <%= @record.json %>
+  </div>
+  
+  <div class="meteorite" data-bind_key="<%= @record.bind_key %>" data-bind_attr="updated_at">
+    <%= @record.updated_at %>
+  </div>
+  
   <%= render 'form' %>
   
   <br><br><br><br>
@@ -30,11 +38,26 @@
     // parse the json message
     // todo: handle non-json messages
     var json = JSON.parse(msg.data);
-    var text = json.json.text;
-    var title = json.json.title;
+    //var text = json.json.text;
+    //var title = json.json.title;
     // update UI
-    $('.bind-text').text(text);
-    $('.bind-title').text(title);
+    //$('.bind-text').text(text);
+    //$('.bind-title').text(title);
+    
+    // for each meteorite class
+    $('.meteorite').each(function() {
+      // if the bind keys match
+      if ($(this).data('bind_key') === json.bind_key) {
+        // get the bind data
+        var bind_data = JSON.parse(json.bind_data);
+        // desired attribute
+        var bind_attr = $(this).data('bind_attr');
+        // get the attribute data
+        var attr_data = JSON.stringify(bind_data[bind_attr]);
+        // update the attribute
+        $(this).text(attr_data);
+      }
+    });
   }
 </script>
 

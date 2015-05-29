@@ -124,7 +124,6 @@ class RecordsController < ApplicationController
     
     # if the record was saved successfully
     if @record.save
-    
       # push to redis
       conn = Hiredis::Connection.new
       conn.connect("127.0.0.1", 6379)
