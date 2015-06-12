@@ -125,10 +125,8 @@ class RecordsController < ApplicationController
     # if the record was saved successfully
     if @record.save
       # push to redis
-      conn = Hiredis::Connection.new
-      conn.connect("127.0.0.1", 6379)
-      conn.write ["PUBLISH", @record.bind_key, @record.to_json]
-      conn.read
+      #$redis.write(["PUBLISH", @record.bind_key, @record.to_json]).read
+      $redis.publish(@record.bind_key, @record.to_json)
       
       @record.update_user_json_keys!
       flash[:notice] = 'Document saved.'
