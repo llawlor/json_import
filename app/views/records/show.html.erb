@@ -29,10 +29,7 @@
   // initialize websocket
   var ws = new WebSocket("ws://192.168.56.101:8080/");
   
-  ws.onopen = function() {
-    // listen to changes
-    ws.send(JSON.stringify({ action: 'subscribe', key: '<%= @record.bind_key %>' }));
-  }
+
   
   ws.onmessage = function(msg) {
     // parse the json message
@@ -56,3 +53,9 @@
   }
 </script>
 
+<script>
+  ws.onopen = function() {
+    // listen to changes
+    ws.send(JSON.stringify({ action: 'subscribe', key: '<%= @record.bind_key %>' }));
+  }
+</script>

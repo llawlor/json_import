@@ -125,7 +125,6 @@ class RecordsController < ApplicationController
     # if the record was saved successfully
     if @record.save
       # push to redis
-      #$redis.write(["PUBLISH", @record.bind_key, @record.to_json]).read
       $redis.publish(@record.bind_key, @record.to_json)
       
       @record.update_user_json_keys!
