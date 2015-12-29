@@ -1,16 +1,16 @@
 <div class="col-sm-8 col-xs-12">
   <h2>JSON Documents</h2>
-  
+
   <%= link_to 'New JSON Document', new_record_path, class: 'btn btn-primary btn-sm pull-left', style: 'margin-right: 20px;' %>
   <%= link_to 'Upload JSON Documents', import_records_path, class: 'btn btn-primary btn-sm pull-left', style: 'margin-right: 20px;' %>
   <%= link_to 'Download JSON Documents', export_records_path, method: :post, class: 'btn btn-primary btn-sm pull-left' %>
-  
+
   <br><br>
-  
+
   <% if current_user.json_keys.present? && current_user.records.any? %>
-  
+
     <h3>Search Documents</h3>
-  
+
     <form action="/records" method="get" class="form-horizontal">
       <div class="form-group">
         <div class="col-sm-10 col-xs-12">
@@ -20,12 +20,12 @@
           </div>
         </div>
       </div>
-      
+
       <div class="form-group">
         <div class="col-sm-10 col-xs-12">
           <label class="col-sm-2 col-xs-2 control-label">Search:</label>
           <div class="col-sm-10 col-xs-10">
-            <input name="search" type="text" placeholder="Search your JSON documents" class="form-control" autofocus>
+            <input name="search" type="text" placeholder="Search your JSON documents" value="<%= params[:search] %>" class="form-control" autofocus>
           </div>
         </div>
 
@@ -37,11 +37,11 @@
   <% end %>
 
   <br><br>
-  
+
   <% if @records.present? %>
     <b><%= @records.total_entries %> records found.</b>
     <br><br>
-  
+
     <table class="table table-striped">
       <% @records.each do |record| %>
         <tr>
@@ -50,8 +50,8 @@
         </tr>
       <% end %>
     </table>
-    
+
     <%= will_paginate @records, renderer: BootstrapPagination::Rails %>
   <% end %>
-  
+
 </div>
