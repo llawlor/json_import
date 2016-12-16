@@ -7,9 +7,12 @@ module RecordsHelper
 
   # convert line endings correctly for html
   def fix_html_lines(value)
-    value.class == String ? value.gsub("\\n", "<br>").gsub("\n", "<br>") : value.to_s
+    # replace line breaks correctly
+    output = (value.class == String) ? value.gsub("\\n", "<br>").gsub("\n", "<br>") : value.to_s
+    # automatically add html links
+    return auto_link(output)
   end
-  
+
   # add classes to keys and values
   def json_as_html(json)
     # opening table html
@@ -36,5 +39,5 @@ module RecordsHelper
     # return the html
     return html
   end
-  
+
 end

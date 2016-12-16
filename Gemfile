@@ -12,6 +12,7 @@ gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 gem 'dynamic_form'
 gem 'activeadmin', github: 'activeadmin'
+gem 'rails_autolink'
 
 group :development, :test do
   gem 'spring'
@@ -24,4 +25,3 @@ group :development do
   gem 'capistrano-rails'
   gem 'byebug'
 end
-
