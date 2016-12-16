@@ -2,7 +2,7 @@
 $(document).on('ready page:load', function() {
   // make some preformatted text look nicer
   prettyPrint();
-  
+
   // allow flash notices to be dismissed
   if ($(".flash").length > 0) {
     $(".flash").on("click", function() {
@@ -15,7 +15,7 @@ $(document).on('ready page:load', function() {
       }
     }, 15000);
   }
-  
+
   // only set json on this page
   if ($('#json_show_page').length > 0) {
     setJsonShowPage();
@@ -36,12 +36,12 @@ $(document).on('click', function() {
     hideJsonInputs();
   }
 });
-  
+
 // set javascript for json show page
 function setJsonShowPage() {
   // hide the text area
   $('#record_json_form_group').css('display', 'none');
-  
+
   // intercept the save button click
   $('#save_button').on('click', function() {
     // set the textarea to the proper value
@@ -51,10 +51,10 @@ function setJsonShowPage() {
     // override default button behavior
     return false;
   });
-  
+
   // hide all inputs initially
   $('.json-input').hide();
-  
+
   // set behavior of json inputs
   setJsonInputListeners();
 }
@@ -63,7 +63,7 @@ function setJsonShowPage() {
 function setFormJson() {
   // opening json string
   var json_string = '{';
-  
+
   // for each json input
   $('.json-input').each(function() {
     var value = $(this).val().replace(/"/g, '\\"').replace(/\t/g, '  ');
@@ -74,12 +74,12 @@ function setFormJson() {
     // else add a comma
     else { json_string += ', '; }
   });
-  
+
   // remove the last 2 character: comma space
   if (json_string.length > 2) {
     json_string = json_string.slice(0, -2);
   }
-  
+
   // closing json string
   json_string += '}';
 
@@ -106,11 +106,11 @@ function hideJsonInputs() {
   // for each json input
   $('.json-input').each(function() {
     // set the text correctly
-    $(this).siblings('.json-text').text($(this).val());
+    $(this).siblings('.json-text').html($(this).val().replace(/\n/g, '<br>'));
     // hide this
     $(this).hide();
   });
-  
+
   // show the text
   $('.json-text').show();
 }
