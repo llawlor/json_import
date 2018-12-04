@@ -30,7 +30,7 @@ module RecordsHelper
       # add html for the value text
       html += "<span class='json-text'>#{fix_html_lines(json[key])}</span>";
       # add html for the value textarea
-      html += "<textarea class='json-input json-value form-control' rows='8'>#{fix_input_lines(json[key])}</textarea>";
+      html += "<textarea class='json-input json-value form-control' rows='15'>#{fix_input_lines(json[key])}</textarea>";
       # add closing cell and row html
       html += "</td></tr>"
     end
